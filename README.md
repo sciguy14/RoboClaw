@@ -1,6 +1,6 @@
 RoboClaw Web-Controlled Robotic Claw
 ====================================
-The project was Developed by Jeremy E. Blum <www.jeremyblum.com>
+The project was developed by Jeremy Blum. www.jeremyblum.com  
 More info is available at http://www.jeremyblum.com/portfolio/web-controlled-roboclaw/
 
 This is Open Source Hardware and Software Licensed via a Creative Commons Attribution Share-Alike License
