@@ -4,20 +4,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>RoboClaw v2 Control - Jeremy Blum</title>
 <script language="javascript">
-function SetCmd(action,magnitude) {
-    document.forms[0].elements[0].value = action;
-	document.forms[0].elements[1].value = magnitude;
-    document.forms[0].submit();
-    return false;
+var gpio = require("node_modules/pi-gpio"),
+
+function SetOutputVal(pin,val) {
+	gpio.open(pin, "output", function(err) {     // Open pin for output
+		gpio.write(pin, val, function() {        // Set pin high (1) or low (0)
+			gpio.close(pin);                     // Close pin 
+		});
+	});
+	return false;
 }
 </script>
 </head>
 <body>
-
-<form name="form" id="form" action="#" method="post">
-<input type="hidden" name="Nb_var20" id="Nb_var20" value="">
-<input type="hidden" name="Nb_var21" id="Nb_var21" value="">
-</form>
 
 <table>
 
@@ -88,10 +87,10 @@ document.Player.ToolbarConfiguration = "play,+snapshot,+fullscreen"
 	<map name="imgmap">  
     	
         <!--CLAW OPEN CLOSE-->
-        <area shape="poly" coords="19,188,26,235,64,199,20,190" href="#" onClick="return SetCmd('CO', '1');" title="Claw Open" alt="Claw Open">
-        <area shape="poly" coords="83,275,125,244,126,289" href="#" onClick="return SetCmd('CO', '1');" title="Claw Open" alt="Claw Open">  
-        <area shape="poly" coords="71,212,76,245,44,238" href="#" onClick="return SetCmd('CC', '1');" title="Claw Close" alt="Claw Close">  
-        <area shape="poly" coords="78,229,79,261,108,238" href="#" onClick="return SetCmd('CC', '1');" title="Claw Close" alt="Claw Close">  
+        <area shape="poly" coords="19,188,26,235,64,199,20,190" href="#" onClick="return SetOutputVal(22, 1);" title="Claw Open" alt="Claw Open">
+        <area shape="poly" coords="83,275,125,244,126,289" href="#" onClick="return SetOutputVal(22, 1);" title="Claw Open" alt="Claw Open">  
+        <area shape="poly" coords="71,212,76,245,44,238" href="#" onClick="return SetOutputVal(22, 0);" title="Claw Close" alt="Claw Close">  
+        <area shape="poly" coords="78,229,79,261,108,238" href="#" onClick="return SetOutputVal(22, 0);" title="Claw Close" alt="Claw Close">  
           
 
 		<!--WRIST UP DOWN-->
